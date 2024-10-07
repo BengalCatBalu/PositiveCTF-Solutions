@@ -16,6 +16,7 @@ contract CallMeMaybeTest is BaseTest {
 
     function testExploitLevel() public {
         /* YOUR EXPLOIT GOES HERE */
+        Exploit ex = new Exploit(instance);
 
         checkSuccess();
     }

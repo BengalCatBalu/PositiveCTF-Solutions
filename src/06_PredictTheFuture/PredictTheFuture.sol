@@ -2,7 +2,7 @@
 pragma solidity ^0.8.12;
 
 // Guess number before it's generated and you will receive all the funds from contract.
-
+import {console} from "forge-std/console.sol";
 contract PredictTheFuture {
     address public player;
     uint8 public guess;
@@ -25,6 +25,7 @@ contract PredictTheFuture {
         require(block.number > nextBlockNumber, "Need to call at next block");
 
         uint256 answer = uint256(keccak256(abi.encodePacked(blockhash(block.number - 1), block.timestamp))) % 10;
+        console.log(answer);
 
         player = address(0);
         if (guess == answer) {

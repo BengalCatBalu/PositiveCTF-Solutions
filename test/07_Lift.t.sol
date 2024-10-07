@@ -17,6 +17,8 @@ contract LiftTest is BaseTest {
 
     function testExploitLevel() public {
         /* YOUR EXPLOIT GOES HERE */
+        Exploit expl = new Exploit();
+        expl.attack(instance);
 
         checkSuccess();
     }

