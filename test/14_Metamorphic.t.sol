@@ -5,6 +5,7 @@ import "./BaseTest.t.sol";
 import "src/14_Metamorphic/MyToken.sol";
 import "src/14_Metamorphic/WalletERC20.sol";
 import "src/14_Metamorphic/MetaFactory.sol";
+import {console} from "forge-std/console.sol";
 
 // forge test --match-contract MetamorphicTest
 contract MetamorphicTest is BaseTest {
@@ -24,10 +25,18 @@ contract MetamorphicTest is BaseTest {
         metaAddr = instance.deploy(uint256(keccak256(bytecode)), bytecode);
         WalletERC20(metaAddr).initializer(token);
         token.mint(metaAddr, 1000);
+
+        //WalletERC20(metaAddr).kill();
     }
 
     function testExploitLevel() public {
         /* YOUR EXPLOIT GOES HERE */
+        console.logBytes(metaAddr.code);
+        //WalletERC20(metaAddr).kill();
+        //bytes memory bytecode = _concatenateAddr(address(implementation));
+        //metaAddr = instance.deploy(uint256(keccak256(bytecode)), bytecode);
+
+        metaAddr = address(0);
 
         checkSuccess();
     }

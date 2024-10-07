@@ -3,6 +3,8 @@ pragma solidity ^0.8.25;
 
 // Ahoy, landlubber! The pirate ship "Black Pearl" is at anchor.
 // Make it pull the anchor and haul the black jack flag to set off for the search of treasures.
+import {console} from "forge-std/console.sol";
+
 
 contract PirateShip {
     address public anchor = address(0x0);
@@ -47,6 +49,8 @@ contract PirateShip {
         a[7] = 0xff; // SELFDESTRUCT
 
         uint256 code = assemble(a);
+        //console.log("code", code);
+        console.logBytes32(bytes32(code));
 
         // init code to deploy contract: stores it in memory and returns appropriate offsets
         uint256[8] memory b;

